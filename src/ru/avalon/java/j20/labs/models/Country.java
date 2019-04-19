@@ -1,6 +1,8 @@
 package ru.avalon.java.j20.labs.models;
 
+import java.awt.geom.Path2D;
 import java.text.ParseException;
+import java.util.Map;
 
 /**
  * Модель представления о стране.
@@ -57,10 +59,14 @@ public class Country {
      * @throws ParseException в случае, если переданная строка
      * имеет неверный формат.
      */
+    
     public static Country valueOf(String text) throws ParseException {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        String temp = String.format(text, args)
+        if (!(text.contains(%:));
+            ()
+        return null;
     }
 }
