@@ -52,12 +52,12 @@ public class Task6 implements Task {
      * @throws IOException в случае ошибки ввода-вывода.
      */
     private Collection<Country> read6(File file) throws IOException, ParseException {
-        Collection<Country> resultCountries = new ArrayList<>();
+        Collection<Country> countries = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             while (reader.ready()==true){
-                resultCountries.add(Country.valueOf(reader.readLine()));
+                countries.add(Country.valueOf(reader.readLine()));
             }
         }
-        return resultCountries;
+        return countries;
     }
 }
