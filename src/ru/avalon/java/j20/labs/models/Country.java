@@ -64,9 +64,11 @@ public class Country {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
-        String temp = String.format(text, args)
-        if (!(text.contains(%:));
-            ()
-        return null;
-    }
+        String splittedText[]= new String[2];
+        if (text.matches("^[A-Z]{2}[\\\\:]{1}[а-яА-Я]+$")==true) {
+          splittedText = text.split("\\:", 2);
+            throw new ParseException("this text cannot be used to creating Country", 2);
+        } 
+            return new Country(splittedText[0], splittedText[1]);
+        } 
 }

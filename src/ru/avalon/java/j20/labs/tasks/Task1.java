@@ -1,9 +1,14 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.ByteArrayOutputStream;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Задание №1
@@ -20,8 +25,8 @@ public class Task1 implements Task {
     public void run() throws IOException {
         File input = new File("assets/countries.txt");
         File output = new File("countries_binary_mode_output.txt");
-        String text = read(input);
-        write(output, text);
+        String text = read1(input);
+        write1(output, text);
 
         /*
          * TODO(Студент): Выполнить задание №1
@@ -53,8 +58,16 @@ public class Task1 implements Task {
      * @return содержимое файла в виде текста.
      * @throws IOException в случае ошибок ввода-вывода.
      */
-    private String read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+    private String read1(File file) throws IOException {
+        try ( InputStream iStr = new FileInputStream(file)) {
+            ByteArrayOutputStream bAOStr = new ByteArrayOutputStream(8);
+            byte[] buffer = new byte[8];
+            int readBytes;
+            while ((readBytes=iStr.read(buffer))>0){
+                bAOStr.write(readBytes);
+            } return 
+                bAOStr.toString();
+    }
     }
 
     /**
@@ -65,7 +78,9 @@ public class Task1 implements Task {
      * @param text текст
      * @throws IOException в случае ошибок ввода-вывода.
      */
-    private void write(File file, String text) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
-    }
+    private void write1(File file, String text) throws IOException {
+         try(OutputStream oStr = new FileOutputStream(file)){
+            oStr.write(text.getBytes());
+            }
+        }
 }
