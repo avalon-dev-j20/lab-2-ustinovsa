@@ -1,10 +1,11 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.BufferedReader;
 import ru.avalon.java.j20.labs.Task;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
+import java.io.*;
+import java.util.*;
+//import javafx.concurrent.Worker;
 
 /**
  * Задание №3
@@ -21,8 +22,8 @@ public class Task3 implements Task {
     public void run() throws IOException {
         File input = new File("assets/countries.txt");
         File output = new File("countries_buffered_mode_output.txt");
-        Collection<String> lines = read(input);
-        write(output, lines);
+        Collection<String> lines = read3(input);
+        write3(output, lines);
 
         /*
          * TODO(Студент): Выполнить задание №3
@@ -51,8 +52,14 @@ public class Task3 implements Task {
      * @return содержимое файла в виде текста.
      * @throws IOException в случае ошибок ввода-вывода.
      */
-    private Collection<String> read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+    private Collection<String> read3(File file) throws IOException {
+        Collection<String> result = new ArrayList<>();
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            while (reader.ready()==true){
+                result.add(reader.readLine());
+            }
+        }
+        return result;
     }
 
     /**
@@ -65,7 +72,11 @@ public class Task3 implements Task {
      * @param collection коллекция строк
      * @throws IOException в случае ошибок ввода-вывода.
      */
-    private void write(File file, Collection<String> collection) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+    @SuppressWarnings("empty-statement")
+    private void write3(File file, Collection<String> collection) 
+                                            throws IOException {
+        try (PrintWriter writer = new PrintWriter(file)){
+            collection.forEach((str) -> writer.println(str));
     }
+}
 }
