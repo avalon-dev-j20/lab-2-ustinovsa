@@ -9,6 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.util.SortedMap;
 
 /**
  * Задание №1
@@ -60,16 +62,16 @@ public class Task1 implements Task {
      */
     private String read1(File file) throws IOException {
         try ( InputStream iStr = new FileInputStream(file)) {
-            ByteArrayOutputStream bAOStr = new ByteArrayOutputStream(8);
+            ByteArrayOutputStream bAOStr = new ByteArrayOutputStream();
             byte[] buffer = new byte[8];
             int readBytes;
             while ((readBytes=iStr.read(buffer))>0){
-                bAOStr.write(readBytes);
+                bAOStr.write(buffer, 0, readBytes);
             } return 
-                bAOStr.toString();
+                bAOStr.toString("Cp1251");
     }
     }
-
+    
     /**
      * Выполняет запись текстоых данных в файл в двоичном
      * режиме.
@@ -80,7 +82,7 @@ public class Task1 implements Task {
      */
     private void write1(File file, String text) throws IOException {
          try(OutputStream oStr = new FileOutputStream(file)){
-            oStr.write(text.getBytes());
+            oStr.write(text.getBytes("Cp1251"));
             }
         }
 }

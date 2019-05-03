@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.charset.Charset;
 
 /**
  * Задание №2
@@ -59,12 +60,16 @@ public class Task2 implements Task {
      */
     private String read2(File file) throws IOException{
          StringBuilder sb = new StringBuilder();
+         byte[] decode;
+         
         try( Reader reader = new FileReader(file)){
-           while(reader.ready()==true){
-               sb.append(reader.read());
+           char[] symbols = new char[8];
+           int readSymmbols;
+           while((readSymmbols = reader.read(symbols))>0){
+               sb.append(symbols, 0, readSymmbols);
            }
         }    
-           return sb.toString();
+        return sb.toString();
     }
 
     /**

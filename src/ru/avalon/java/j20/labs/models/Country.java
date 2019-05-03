@@ -68,7 +68,7 @@ public class Country {
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
         String[] splittedText= new String[2];
-        if (text.matches("^[A-Z]{2}[\\:]{1}.+$")==false) {
+        if (!(text.matches("^[A-Z]{2}\\:.+$"))) {
             throw new ParseException("Ha-Ha, classic! "+
                      text+
                      " cannot be converted to Country" , text.codePointCount(0, 3));
